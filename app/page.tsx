@@ -1,7 +1,13 @@
 "use client";
 
 import React from "react";
-import Map from '../components/Map';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Map component with SSR disabled
+const Map = dynamic(() => import('../components/Map'), {
+  ssr: false,
+  loading: () => <div style={{ height: '400px', background: '#f0f0f0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading map...</div>
+});
 
 // CSS styles as JavaScript object to bypass Tailwind issues
 const styles = {
